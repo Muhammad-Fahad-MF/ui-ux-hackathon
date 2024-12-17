@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPinterest  } from "react-icons/fa";
 export default function Footer() {
   return (
-   <div>
+   <div className="relative">
     <div className="bg-black/95 px-[300px] w-full text-white font-Inter400 pb-[46px]">
       <section className="mx-[59px] border-b-[1px] border-primary1 flex justify-between h-[143px]">
         <div className="flex flex-col ga-[17px]">
@@ -88,6 +88,7 @@ export default function Footer() {
         </ul>
       </section>
     </div>
+    <Image src="/images/footer/bgFooter.svg" alt="||||" width={296} height={401} className="absolute bottom-0 right-0"/>
     <section className="w-screen h-[99px] bg-[#4f4f4f]">
         <div className="px-[300px] w-full h-full flex justify-between items-center">
             <p className="font-Inter400 text-white">Copyright © 2022 by Ayeman. All Rights Reserved.</p>
