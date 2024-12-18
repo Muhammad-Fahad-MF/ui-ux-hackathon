@@ -3,8 +3,8 @@ import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPinterest  } from "react-icons/fa";
 export default function Footer() {
   return (
-   <div className="relative">
-    <div className="bg-black/95 px-[300px] w-full text-white font-Inter400 pb-[46px]">
+   <div className="relative ">
+    <div className="bg-black/95 px-[300px] w-full text-white font-Inter400 pb-[46px] pt-[120px]">
       <section className="mx-[59px] border-b-[1px] border-primary1 flex justify-between h-[143px]">
         <div className="flex flex-col ga-[17px]">
           <h2 className="font-HelveticaBold text-[32px] leading-[40px]">

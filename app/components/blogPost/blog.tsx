@@ -2,7 +2,7 @@ import BlCard from "./blogCards/blCard";
 
 export default function Blog() {
   return (
-    <div className="px-[300px] flex flex-col font-Inter400 text-white bg-black/95 items-center py-[120px]">
+    <div className="px-[300px] flex flex-col font-Inter400 text-white bg-black/95 items-center pt-[120px]">
        <h3  className="font-GreatVibes text-[32px] leading-[40px] text-primary1">Blog Post</h3>
        <h1 className="font-HelveticaBold text-[48px] leading-[56px] mt-2"><code className="font-HelveticaBold text-[48px] leading-[56px] text-primary1">La</code>test News & Blog</h1>
        <section className="mt-[59px] flex gap-[46px]">

@@ -11,7 +11,7 @@ export default function Navbar() {
                 <li><Link href="#">Blog</Link></li>
                 <li><Link href="#">Pages</Link></li>
                 <li><Link href="#" className="flex items-center">About<Image src="/images/header-banner/dropArrow.svg" alt="`" height={6} width={10} className="m-[2px]"/></Link></li>
-                <li><Link href="#">Shop</Link></li>
+                <li><Link href="/shop">Shop</Link></li>
                 <li><Link href="#">Contact</Link></li>
             </ul>
             <div className="flex gap-2 items-center">
