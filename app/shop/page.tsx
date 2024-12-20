@@ -6,7 +6,7 @@ import Footer from "../components/footer/footer";
 export default function Shop() {
   return (
     <div className="bg-white text-[#333333] font-Inter400 overflow-hidden">
-        <HeaderNav/>
+        <HeaderNav mainHead="Our Shop" trackHead="Shop"/>
         <MainShop/>
         <Footer/>
     </div>

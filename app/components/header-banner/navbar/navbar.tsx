@@ -19,7 +19,9 @@ export default function Navbar() {
                     <input className="bg-transparent  placeholder:text-white placeholder:font-Inter400 focus:outline-none" placeholder="Search..."/>
                     <Image src="/images/header-banner/search.svg" alt="s" height={24} width={24}/>
                 </span>
-                <Image src="/images/header-banner/Handbag.svg" alt="Bag" height={24} width={24}/>
+                <Link href="/shoppingCart">
+                    <Image src="/images/header-banner/Handbag.svg" alt="Bag" height={24} width={24}/>
+                </Link>
             </div>
         </section>
     </div>
