@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import CartCard from "./cartCard/cartCard";
 export default function AddCart() {
   return (
@@ -77,7 +78,9 @@ export default function AddCart() {
               <h4 className="font-Inter700 text-[18px] leading-[26px]">$205.00</h4>
             </div>
           </span>
-          <button className="bg-primary1 w-full h-16 text-[18px] leading-[26px] text-white flex items-center justify-center gap-2 active:opacity-90">Proceed to Checkout <Image src="/images/cart/proceedCheck.svg" alt="`/" height={20} width={20}/></button>
+          <Link href="/checkout" className="w-full h-16">
+            <button className="bg-primary1 w-full h-full text-[18px] leading-[26px] text-white flex items-center justify-center gap-2 active:opacity-90">Proceed to Checkout <Image src="/images/cart/proceedCheck.svg" alt="`/" height={20} width={20}/></button>
+          </Link>  
         </div>
       </section> 
     </div>

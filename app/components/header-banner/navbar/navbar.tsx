@@ -6,7 +6,7 @@ export default function Navbar() {
         <h2 className="font-HelveticaBold text-[24px] leading-[32px]"><code className="text-primary1 font-HelveticaBold">Food</code>tuck</h2>
         <section className="flex justify-between items-center w-full font-Inter400">
             <ul className="font-Inter400 flex gap-8">
-                <li><Link href="#" className="flex items-center flex-col">Home<div className="h-[7px] w-[7px] rounded-full bg-primary1"></div></Link></li>
+                <li><Link href="/" className="flex items-center flex-col">Home<div className="h-[7px] w-[7px] rounded-full bg-primary1"></div></Link></li>
                 <li><Link href="#">Menu</Link></li>
                 <li><Link href="#">Blog</Link></li>
                 <li><Link href="#">Pages</Link></li>

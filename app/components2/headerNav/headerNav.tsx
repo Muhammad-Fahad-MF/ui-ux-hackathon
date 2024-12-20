@@ -11,7 +11,7 @@ export default function HeaderNav({mainHead, trackHead}: navBarProps) {
         <section className="w-full h-[90px] bg-[#0d0d0d] px-[300px] flex items-center justify-between" id="nav">
             <h2 className="font-HelveticaBold text-[24px] leading-[32px]"><code className="text-primary1 font-HelveticaBold">Food</code>tuck</h2>
             <ul className="font-Inter400 flex gap-8">
-                <li><Link href="#" className="font-Inter700 text-primary1">Home</Link></li>
+                <li><Link href="/" className="font-Inter700 text-primary1">Home</Link></li>
                 <li><Link href="#">Menu</Link></li>
                 <li><Link href="#">Blog</Link></li>
                 <li><Link href="#">Pages</Link></li>
