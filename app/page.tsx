@@ -13,7 +13,7 @@ import Footer from "./components/footer/footer";
 
 export default function Page() {
   return (
-    <div className="overflow-hidden relative ">
+    <div className="overflow-hidden relative">
       <HeaderBanner />
       <AboutUs />
       <FoodCat />

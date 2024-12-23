@@ -32,8 +32,8 @@ export default function ShopCard({
       }
       <div className="hidden group-hover:block h-[34px] w-[146px] absolute top-[148px] left-[83px] ">
         <span className="h-[34px] w-[146px] flex gap-[13px] ">
-            <Link href="#nav"><div className="w-10 h-[34px] rounded-sm flex justify-center items-center bg-white"><Image src="/images/shop/status.svg" alt=" " height={18} width={18}/></div></Link>
-            <Link href="#nav"><div className="w-10 h-[34px] rounded-sm flex justify-center items-center bg-primary1"><Image src="/images/shop/Tote.svg" alt=" " height={18} width={18}/></div></Link>
+            <Link href="/details"><div className="w-10 h-[34px] rounded-sm flex justify-center items-center bg-white"><Image src="/images/shop/status.svg" alt=" " height={18} width={18}/></div></Link>
+            <Link href="/shoppingCart"><div className="w-10 h-[34px] rounded-sm flex justify-center items-center bg-primary1"><Image src="/images/shop/Tote.svg" alt=" " height={18} width={18}/></div></Link>
             <Link href="#nav"><div className="w-10 h-[34px] rounded-sm flex justify-center items-center bg-white"><Image src="/images/shop/Heart.svg" alt=" " height={18} width={18}/></div></Link>
         </span>
       </div>
