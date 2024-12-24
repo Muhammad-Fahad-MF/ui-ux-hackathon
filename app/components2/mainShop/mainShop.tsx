@@ -3,12 +3,12 @@ import ShopCard from "./shopCard/shopCard";
 import { FaStar } from "react-icons/fa6";
 export default function MainShop() {
   return (
-    <div className="flex my-[120px] mx-[300px] gap-6">
+    <div className="flex my-[120px] mx-[300px] gap-6 max-sm:mx-5 max-sm:my-14 max-sm:flex-col max-lp:mx-2 max-lp:my-14 max-lp:gap-2">
       <section className="flex flex-col">
-        <span className="flex gap-[33px]">
-          <div className="flex items-center gap-[15px]">
+        <span className="flex gap-[33px] max-sm:flex-col">
+          <div className="flex items-center gap-[15px] max-sm:w-full max-sm:justify-between">
             <h6 className="text-[20px] leading-[28px]">Sort By :</h6>
-            <label className="rounded-md border-[1px] border-[#e0e0e0] h-[46px] w-[336px] box-border text-[#bdbdbd] text-[18px] leading-[26px] px-[18px] flex items-center justify-between">
+            <label className="rounded-md border-[1px] border-[#e0e0e0] h-[46px] w-[336px] box-border text-[#bdbdbd] text-[18px] leading-[26px] px-[18px] flex items-center justify-between max-sm:w-[60vw]">
               Newest{" "}
               <Image
                 src="/images/shop/CaretDown.svg"
@@ -18,9 +18,9 @@ export default function MainShop() {
               />
             </label>
           </div>
-          <div className="flex items-center gap-[15px]">
+          <div className="flex items-center gap-[15px] max-sm:w-full max-sm:justify-between">
             <h6 className="text-[20px] leading-[28px]">Show :</h6>
-            <label className="rounded-md border-[1px] border-[#e0e0e0] h-[46px] w-[336px] box-border text-[#bdbdbd] text-[18px] leading-[26px] px-[18px] flex items-center justify-between">
+            <label className="rounded-md border-[1px] border-[#e0e0e0] h-[46px] w-[336px] box-border text-[#bdbdbd] text-[18px] leading-[26px] px-[18px] flex items-center justify-between max-sm:w-[60vw]">
               Default{" "}
               <Image
                 src="/images/shop/CaretDown.svg"
@@ -31,8 +31,8 @@ export default function MainShop() {
             </label>
           </div>
         </span>
-        <span className="mt-6 flex flex-col gap-6">
-          <div className="flex gap-6">
+        <span className="mt-6 flex flex-col gap-6 max-sm:items-center">
+          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
             <ShopCard
               imgSrc="/images/shop/lime.svg"
               title="Fresh Lime"
@@ -52,7 +52,7 @@ export default function MainShop() {
               discount
             />
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
             <ShopCard
               imgSrc="/images/shop/cBurger.svg"
               title="Country Burger"
@@ -70,7 +70,7 @@ export default function MainShop() {
               price="$43.00"
             />
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
             <ShopCard
               imgSrc="/images/shop/cheese.svg"
               title="Cheese Butter"
@@ -88,7 +88,7 @@ export default function MainShop() {
               sell
             />
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
             <ShopCard
               imgSrc="/images/shop/cBurger.svg"
               title="Country Burger"
@@ -106,7 +106,7 @@ export default function MainShop() {
               price="$43.00"
             />
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
             <ShopCard
               imgSrc="/images/shop/cheese.svg"
               title="Cheese Butter"
@@ -153,7 +153,7 @@ export default function MainShop() {
           </div>
         </span>
       </section>
-      <section className="h-[1489px] w-[312px] rounded-md border-[1px] border-[#f2f2f2] box-border px-[30px] py-6 flex flex-col gap-6">
+      <section className="h-[1489px] w-[312px] max-lp:w-[300px] max-lp:px-5 rounded-md border-[1px] border-[#f2f2f2] box-border px-[30px] py-6 flex flex-col gap-6 max-sm:self-center max-sm:mt-8">
         <div className="h-[46px] w-[248px] bg-primary1/10 pl-5 flex justify-between items-center">
             <input className="text-[#828282] w-[150px] bg-transparent focus:outline-none" placeholder="Search Product"/>
             <button className="bg-primary1 h-[46px] w-[46px] flex justify-center items-center"><Image src="/images/shop/Magnify.svg" alt="_" height={20} width={20}/></button>

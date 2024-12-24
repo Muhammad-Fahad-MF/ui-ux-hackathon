@@ -22,7 +22,7 @@ export default function Page() {
         alt="bg"
         height={532.3}
         width={444.1}
-        className=" absolute top-[2003px] right-[-3px] rotate-[76.86] "
+        className=" absolute top-[2003px] right-[-3px] rotate-[76.86] z-0 "
       />
       <Choose />
       <Client />

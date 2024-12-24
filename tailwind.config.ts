@@ -20,7 +20,10 @@ export default {
   			GreatVibes: ['GreatVibes'],
   			Inter400: ['Inter400'],
         Inter700: ['Inter700']
-  		}
+  		},
+      screens: {
+        lp: "1281px",
+      }
     },
   },
   plugins: [],

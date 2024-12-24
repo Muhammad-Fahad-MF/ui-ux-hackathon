@@ -3,10 +3,10 @@ import Image from "next/image";
 import ShopCard from "../mainShop/shopCard/shopCard";
 export default function MainDetails() {
   return (
-    <div className="mx-[300px] my-[120px] flex flex-col">
-      <section className="flex gap-[55px]">
-        <div className="flex gap-6">
-          <span className="flex flex-col gap-6">
+    <div className="ml-[300px] my-[120px] flex flex-col max-sm:mx-5 max-sm:my-14 max-lp:mx-0 max-lp:my-[80px]">
+      <section className="flex gap-[55px] max-sm:flex-col max-lp:gap-6">
+        <div className="flex gap-6 h-fit max-sm:flex-col-reverse max-lp:gap-4">
+          <div className="flex flex-col gap-6 h-fit max-sm:flex-row max-sm:overflow-scroll max-sm:w-full">
             <Image
               src="/images/details/fried.svg"
               alt="-"
@@ -35,21 +35,21 @@ export default function MainDetails() {
               width={132}
               className="rounded-md"
             />
-          </span>
+          </div>
           <Image
             src="/images/details/egg.svg"
             alt="-"
             height={596}
             width={491}
-            className="rounded-md"
+            className="rounded-md max-sm:w-full max-lp:h-[596px] h-fit"
           />
         </div>
         <div className="flex flex-col">
-          <span className="flex justify-between items-center ">
+          <span className="flex justify-between items-center max-sm:w-full ">
             <div className="bg-primary1 rounded-md w-[86px] h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
               In stock
             </div>
-            <div className="h-[26px] w-[152px] flex justify-between ml-[380px]">
+            <div className="h-[26px] w-[152px] flex justify-between ml-[380px] max-sm:ml-0">
               <span className="flex gap-1 items-center  text-[18px] leading-[26px] text-[#828282]">
                 <Image
                   src="/images/details/ArrowLeft.svg"
@@ -70,10 +70,10 @@ export default function MainDetails() {
               </span>
             </div>
           </span>
-          <h1 className="font-HelveticaBold text-[48px] leading-[56px] text-[#333333] mt-2">
+          <h1 className="font-HelveticaBold text-[48px] leading-[56px] text-[#333333] mt-2 max-sm:text-4xl max-sm:mt-4">
             Yummy Chicken Chup
           </h1>
-          <p className="text-[18px] leading-[26px] w-[608px] my-6 pb-8 border-b-[1px] box-border border-[#e0e0e0]">
+          <p className="text-[18px] leading-[26px] w-[608px] my-6 pb-8 border-b-[1px] box-border border-[#e0e0e0] max-sm:w-auto max-sm:text-base ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
             diam pellentesque bibendum non dui volutpat fringilla bibendum.
             Urna, urna, vitae feugiat pretium donec id elementum. Ultrices
@@ -227,8 +227,8 @@ export default function MainDetails() {
           </span>
         </div>
       </section>
-      <section className="mt-[56px]">
-        <span className="flex items-center gap-6">
+      <section className="mt-[56px] max-lp:mx-6">
+        <span className="flex items-center gap-6 max-sm:gap-10">
           <div className="bg-primary1 w-[165px] h-[50px] font-Helvetica text-white flex justify-center items-center">
             Description
           </div>
@@ -237,20 +237,20 @@ export default function MainDetails() {
         <p className="mt-8 text-[#828282]">
           Nam tristique porta ligula, vel viverra sem eleifend nec. Nulla sed
           purus augue, eu euismod tellus. Nam mattis eros nec mi sagittis
-          sagittis. Vestibulum suscipit cursus <br />
+          sagittis. Vestibulum suscipit cursus <br className="max-sm:hidden" />
           bibendum. Integer at justo eget sem auctor auctor eget vitae arcu. Nam
           tempor malesuada porttitor. Nulla quis dignissim ipsum. Aliquam
-          pulvinar iaculis justo, sit amet <br />
+          pulvinar iaculis justo, sit amet <br className="max-sm:hidden"/>
           interdum sem hendrerit vitae. Vivamus vel erat tortor. Nulla facilisi.
           In nulla quam, lacinia eu aliquam ac, aliquam in nisl.
         </p>
         <p className="mt-6 text-[#828282]">
           Suspendisse cursus sodales placerat. Morbi eu lacinia ex. Curabitur
           blandit justo urna, id porttitor est dignissim nec. Pellentesque
-          scelerisque hendrerit posuere. Sed at dolor <br />
+          scelerisque hendrerit posuere. Sed at dolor <br className="max-sm:hidden"/>
           quis nisi rutrum accumsan et sagittis massa. Aliquam aliquam accumsan
           lectus quis auctor. Curabitur rutrum massa at volutpat placerat. Duis
-          sagittis vehicula fermentum. <br />
+          sagittis vehicula fermentum. <br className="max-sm:hidden"/>
           Integer eu vulputate justo. Aenean pretium odio vel tempor sodales.
           Suspendisse eu fringilla leo, non aliquet sem.
         </p>
@@ -278,8 +278,8 @@ export default function MainDetails() {
         </span>
       </section>
       <section className="mt-[120px]">
-        <div className="w-full flex justify-between">
-          <h3 className="font-HelveticaBold text-[32px] leading-[40px] text-[#333333]">
+        <div className="w-full flex justify-between items-center">
+          <h3 className="font-HelveticaBold text-[32px] leading-[40px] text-[#333333] text-3xl">
             Similar Products
           </h3>
           <div className="flex gap-2">
@@ -301,7 +301,7 @@ export default function MainDetails() {
             </button>
           </div>
         </div>
-        <div className="flex gap-6 mt-8">
+        <div className="flex gap-6 mt-8 max-sm:flex-col max-sm:items-center">
           <ShopCard
             imgSrc="/images/shop/lime.svg"
             title="Fresh Lime"
