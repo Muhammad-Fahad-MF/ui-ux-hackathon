@@ -160,7 +160,7 @@ export default function MainDetails() {
               Add to cart
             </button>
           </span>
-          <span className="w-[618px] border-y-[1px] border-[#e0e0e0] box-border mt-[34px] py-6 space-y-2">
+          <span className="w-[618px] border-y-[1px] border-[#e0e0e0] box-border mt-[34px] py-6">
             <div className="flex gap-4">
               <div className="flex items-center gap-2 text-[18px] leading-[26px]">
                 <Image
@@ -181,15 +181,15 @@ export default function MainDetails() {
                 Compare
               </div>
             </div>
-            <div className="flex items-center gap-2 text-[18px] leading-[26px]">
+            <div className="flex items-center gap-2 text-[18px] leading-[26px] mt-2">
               <p className="text-[#333333]">Category:</p>
               Pizza
             </div>
-            <div className="flex items-center gap-2 text-[18px] leading-[26px]">
+            <div className="flex items-center gap-2 text-[18px] leading-[26px] mt-2">
               <p className="text-[#333333]">Tag:</p>
               Our Shop
             </div>
-            <div className="flex items-center gap-2 text-[18px] leading-[26px]">
+            <div className="flex items-center gap-2 text-[18px] leading-[26px] mt-6">
               <p className="text-[#333333]">Share :</p>
               <div className="flex items-center gap-4">
                 <Image
@@ -277,7 +277,7 @@ export default function MainDetails() {
           </ul>
         </span>
       </section>
-      <section className="mt-[120px]">
+      <section className="mt-[120px] mr-[300px]">
         <div className="w-full flex justify-between items-center">
           <h3 className="font-HelveticaBold text-[32px] leading-[40px] text-[#333333] text-3xl">
             Similar Products
