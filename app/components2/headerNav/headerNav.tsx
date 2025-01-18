@@ -9,7 +9,7 @@ export default function HeaderNav({mainHead, trackHead}: navBarProps) {
   return (
     <div className="bg-[url('/images/headerNav/bgHeader.svg')] bg-cover aspect-[192/42] text-white font-Inter400 flex flex-col items-center gap-[108px] -mr-[1px] max-sm:gap-14 max-sm:pb-10 max-sm:bg-bottom max-lp:pb-14 max-lp:gap-20">
         <section className="w-full h-[90px] bg-[#0d0d0d] px-[300px] flex items-center justify-between max-sm:px-5 max-sm:h-[75px] max-lp:px-5" id="nav">
-            <h2 className="font-HelveticaBold text-[24px] leading-[32px]"><code className="text-primary1 font-HelveticaBold">Food</code>tuck</h2>
+            <Link href="/"><h2 className="font-HelveticaBold text-[24px] leading-[32px]"><code className="text-primary1 font-HelveticaBold">Food</code>tuck</h2></Link>
             <ul className="font-Inter400 flex gap-8 max-sm:hidden">
                 <li><Link href="/" className="font-Inter700 text-primary1">Home</Link></li>
                 <li><Link href="#">Menu</Link></li>

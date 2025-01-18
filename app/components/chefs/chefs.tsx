@@ -1,4 +1,5 @@
-import ChefCard from "./chefCard/chefCard"
+import ChefCard from "./chefCard/chefCard";
+import Link from "next/link";
 export default function Chefs() {
   return (
     <div className="px-[300px] flex flex-col font-Inter400 text-white bg-black/95 items-center max-sm:px-5">
@@ -10,7 +11,7 @@ export default function Chefs() {
             <ChefCard img="M. William" name="M. William" role="Advertising Chef"/>
             <ChefCard img="W.Readfroad" name="W.Readfroad" role="Chef"/>   
         </section>
-        <button className="border-[1px] border-primary1 rounded-[25px] w-[155px] h-[50px] hover:bg-primary1">See More</button>
+        <Link href="/chefs"><button className="border-[1px] border-primary1 rounded-[25px] w-[155px] h-[50px] hover:bg-primary1">See More</button></Link>
     </div>
   )
 }

@@ -5,7 +5,8 @@ import Link from "next/link";
 interface shopCardProps {
   imgSrc: string;
   title: string;
-  price: string;
+  price: string | boolean;
+  originalPrice?: string;
   discount?: boolean;
   sell?: boolean;
 }
@@ -13,6 +14,7 @@ export default function ShopCard({
   imgSrc,
   title,
   price,
+  originalPrice,
   discount,
   sell,
 }: shopCardProps) {
@@ -40,7 +42,7 @@ export default function ShopCard({
       <h3 className="font-Inter700 text-[18px] leading-[26px]">{title}</h3>
       <span className="flex gap-2">
         <p className="text-primary1">{price}</p>
-        {isDiscount && <p className="text-[#828282] line-through">$45.00</p>}
+        {isDiscount && <p className="text-[#828282] line-through">{`$${originalPrice}.00`}</p>}
       </span>
     </div>
   );

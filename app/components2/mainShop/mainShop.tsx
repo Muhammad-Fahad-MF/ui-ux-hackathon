@@ -1,7 +1,43 @@
+"use client";
+
 import Image from "next/image";
 import ShopCard from "./shopCard/shopCard";
 import { FaStar } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import { client } from "@/sanity/lib/client";
+
+interface food {
+  name: string;
+  category: string;
+  price: number;
+  originalPrice: string;
+  tags: [];
+  image_url: string;
+  description: string;
+  available: boolean;
+}
 export default function MainShop() {
+
+  const [foodData,setFoodData] = useState<food[]>([])
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      const responce = await client.fetch(
+        `*[_type == "food"]{
+            name,
+            category,
+            price,
+            originalPrice,
+            tags,
+            "image_url":image.asset->url,
+            description,
+            available,
+        }`
+      );
+      setFoodData(responce);
+    }
+    fetchData();
+  })
   return (
     <div className="flex my-[120px] mx-[300px] gap-6 max-sm:mx-5 max-sm:my-14 max-sm:flex-col max-lp:mx-2 max-lp:my-14 max-lp:gap-2">
       <section className="flex flex-col">
@@ -31,98 +67,10 @@ export default function MainShop() {
             </label>
           </div>
         </span>
-        <span className="mt-6 flex flex-col gap-6 max-sm:items-center">
-          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
-            <ShopCard
-              imgSrc="/images/shop/lime.svg"
-              title="Fresh Lime"
-              price="$38.00"
-              discount
-            />
-            <ShopCard
-              imgSrc="/images/shop/muffin.svg"
-              title="Chocolate Muffin"
-              price="$28.00"
-              sell
-            />
-            <ShopCard
-              imgSrc="/images/shop/burger.svg"
-              title="Burger"
-              price="$21.00"
-              discount
-            />
-          </div>
-          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
-            <ShopCard
-              imgSrc="/images/shop/cBurger.svg"
-              title="Country Burger"
-              price="$38.00"
-            />
-            <ShopCard
-              imgSrc="/images/shop/drink.svg"
-              title="Drink"
-              price="$38.00"
-              discount
-            />
-            <ShopCard
-              imgSrc="/images/shop/pizza.svg"
-              title="Pizza"
-              price="$43.00"
-            />
-          </div>
-          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
-            <ShopCard
-              imgSrc="/images/shop/cheese.svg"
-              title="Cheese Butter"
-              price="$10.00"
-            />
-            <ShopCard
-              imgSrc="/images/shop/sandwich.svg"
-              title="Sandwiches"
-              price="$25.00"
-            />
-            <ShopCard
-              imgSrc="/images/shop/chup.svg"
-              title="Chicken Chup"
-              price="$12.00"
-              sell
-            />
-          </div>
-          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
-            <ShopCard
-              imgSrc="/images/shop/cBurger.svg"
-              title="Country Burger"
-              price="$38.00"
-            />
-            <ShopCard
-              imgSrc="/images/shop/drink.svg"
-              title="Drink"
-              price="$38.00"
-              discount
-            />
-            <ShopCard
-              imgSrc="/images/shop/pizza.svg"
-              title="Pizza"
-              price="$43.00"
-            />
-          </div>
-          <div className="flex gap-6 max-sm:flex-col max-lp:gap-2">
-            <ShopCard
-              imgSrc="/images/shop/cheese.svg"
-              title="Cheese Butter"
-              price="$10.00"
-            />
-            <ShopCard
-              imgSrc="/images/shop/sandwich.svg"
-              title="Sandwiches"
-              price="$25.00"
-            />
-            <ShopCard
-              imgSrc="/images/shop/chup.svg"
-              title="Chicken Chup"
-              price="$12.00"
-            />
-          </div>
+        <span className="mt-6 grid grid-cols-3 grid-flow-row gap-6 max-sm:items-center">
+          {foodData.map((food, index)=>{
+            return <ShopCard key={index} imgSrc={food.image_url} title={food.name} price={`$${food.price}.00`} originalPrice={food.originalPrice} discount />
+          })}
         </span>
         <span className="mt-[56px] flex gap-[14px] self-center">
           <div className="h-[50px] w-[50px] box-border border-[2px] border-[#f2f2f2] flex items-center justify-center">
