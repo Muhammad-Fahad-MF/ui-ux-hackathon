@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
 };
 module.exports = {
   images: {
-    domains: ['cdn.sanity.io'], // Add the domain of your image
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/**',
+      },
+    ], // Add the domain of your image
   },
 };  
 export default nextConfig;

@@ -3,10 +3,11 @@
 import Image from "next/image";
 import ShopCard from "./shopCard/shopCard";
 import { FaStar } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 
 interface food {
+  _id: string;
   name: string;
   category: string;
   price: number;
@@ -18,26 +19,33 @@ interface food {
 }
 export default function MainShop() {
 
-  const [foodData,setFoodData] = useState<food[]>([])
+  const [foodData,setFoodData] = useState<food[]>([]);
+  const [search, setSearch] = useState<string>("")
 
   useEffect(()=>{
     const fetchData = async () => {
       const responce = await client.fetch(
-        `*[_type == "food"]{
-            name,
-            category,
-            price,
-            originalPrice,
-            tags,
-            "image_url":image.asset->url,
-            description,
-            available,
-        }`
+      `*[_type == "food"]{
+    _id,
+    name,
+    category,
+    price,
+    originalPrice,
+    tags,
+    "image_url":image.asset->url,
+    description,
+    available,
+  }`
       );
       setFoodData(responce);
     }
     fetchData();
-  })
+  },[])
+
+  const searchData = foodData.filter((food: food)=>{
+    return food.name.toLowerCase().includes(search.toLowerCase())
+  }) 
+
   return (
     <div className="flex my-[120px] mx-[300px] gap-6 max-sm:mx-5 max-sm:my-14 max-sm:flex-col max-lp:mx-2 max-lp:my-14 max-lp:gap-2">
       <section className="flex flex-col">
@@ -68,9 +76,18 @@ export default function MainShop() {
           </div>
         </span>
         <span className="mt-6 grid grid-cols-3 grid-flow-row gap-6 max-sm:items-center">
-          {foodData.map((food, index)=>{
-            return <ShopCard key={index} imgSrc={food.image_url} title={food.name} price={`$${food.price}.00`} originalPrice={food.originalPrice} discount />
-          })}
+        {searchData.map((food: food, index) => (
+          <ShopCard
+            key={index}
+            imgSrc={food.image_url}
+            title={food.name}
+            price={`$${food.price}.00`}
+            originalPrice={food.originalPrice}
+            id={food._id}
+            discount
+          />
+        ))}
+        {searchData.length === 0 && <p>No products found.</p>}
         </span>
         <span className="mt-[56px] flex gap-[14px] self-center">
           <div className="h-[50px] w-[50px] box-border border-[2px] border-[#f2f2f2] flex items-center justify-center">
@@ -103,7 +120,7 @@ export default function MainShop() {
       </section>
       <section className="h-[1489px] w-[312px] max-lp:w-[300px] max-lp:px-5 rounded-md border-[1px] border-[#f2f2f2] box-border px-[30px] py-6 flex flex-col gap-6 max-sm:self-center max-sm:mt-8">
         <div className="h-[46px] w-[248px] bg-primary1/10 pl-5 flex justify-between items-center">
-            <input className="text-[#828282] w-[150px] bg-transparent focus:outline-none" placeholder="Search Product"/>
+            <input className="text-[#828282] w-[150px] bg-transparent focus:outline-none" placeholder="Search Product" onChange={(e: ChangeEvent<HTMLInputElement>)=>{setSearch(e.target.value);}} />
             <button className="bg-primary1 h-[46px] w-[46px] flex justify-center items-center"><Image src="/images/shop/Magnify.svg" alt="_" height={20} width={20}/></button>
         </div>
         <ul className="flex flex-col gap-4">

@@ -1,7 +1,43 @@
 "use client";
 import Image from "next/image";
 import ShopCard from "../mainShop/shopCard/shopCard";
-export default function MainDetails() {
+import { useEffect, useState } from "react";
+import { client } from "@/sanity/lib/client";
+
+
+interface food {
+  name: string;
+  _id: string;
+  category: string;
+  price: number;
+  originalPrice: string;
+  tags: [];
+  image_url: string;
+  description: string;
+  available: boolean;
+}
+
+export default function MainDetails({ product }: { product: food }) {
+  const [foodData, setFoodData] = useState<food[]>([])
+  useEffect(()=>{
+    const fetchData = async () => {
+      const responce = await client.fetch(
+        `*[_type == "food"]{
+      _id,
+      name,
+      category,
+      price,
+      originalPrice,
+      tags,
+      "image_url":image.asset->url,
+      description,
+      available,
+    }`
+        );
+        setFoodData(responce);
+      };
+      fetchData();
+  },[]);
   return (
     <div className="ml-[300px] my-[120px] flex flex-col max-sm:mx-5 max-sm:my-14 max-lp:mx-0 max-lp:my-[80px]">
       <section className="flex gap-[55px] max-sm:flex-col max-lp:gap-6">
@@ -37,7 +73,7 @@ export default function MainDetails() {
             />
           </div>
           <Image
-            src="/images/details/egg.svg"
+            src={product.image_url}
             alt="-"
             height={596}
             width={491}
@@ -46,9 +82,11 @@ export default function MainDetails() {
         </div>
         <div className="flex flex-col">
           <span className="flex justify-between items-center max-sm:w-full ">
-            <div className="bg-primary1 rounded-md w-[86px] h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
+            {product.available ? <div className="bg-primary1 rounded-md px-4 h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
               In stock
-            </div>
+            </div>:<div className="bg-[#e93636] rounded-md px-4 h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
+              Out of stock
+            </div>}
             <div className="h-[26px] w-[152px] flex justify-between ml-[380px] max-sm:ml-0">
               <span className="flex gap-1 items-center  text-[18px] leading-[26px] text-[#828282]">
                 <Image
@@ -71,17 +109,13 @@ export default function MainDetails() {
             </div>
           </span>
           <h1 className="font-HelveticaBold text-[48px] leading-[56px] text-[#333333] mt-2 max-sm:text-4xl max-sm:mt-4">
-            Yummy Chicken Chup
+            {product.name}
           </h1>
           <p className="text-[18px] leading-[26px] w-[608px] my-6 pb-8 border-b-[1px] box-border border-[#e0e0e0] max-sm:w-auto max-sm:text-base ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            diam pellentesque bibendum non dui volutpat fringilla bibendum.
-            Urna, urna, vitae feugiat pretium donec id elementum. Ultrices
-            mattis sed vitae <br />
-            mus risus. Lacus nisi, et ac dapibus sit eu velit in consequat.
+            {product.description}
           </p>
           <h3 className="font-HelveticaBold text-[32px] leading-[40px] text-[#333333] mb-[26px]">
-            54.00$
+            ${product.price}.00
           </h3>
           <span className="h-5 flex items-center">
             <div className="flex items-center gap-1">
@@ -183,11 +217,17 @@ export default function MainDetails() {
             </div>
             <div className="flex items-center gap-2 text-[18px] leading-[26px] mt-2">
               <p className="text-[#333333]">Category:</p>
-              Pizza
+              {product.category}
             </div>
             <div className="flex items-center gap-2 text-[18px] leading-[26px] mt-2">
               <p className="text-[#333333]">Tag:</p>
-              Our Shop
+              {product.tags.map((tag,index)=>{
+                if(index < product.tags.lastIndexOf.length){
+                  return tag+", "; 
+                } else{
+                  return tag;
+                }
+              })}
             </div>
             <div className="flex items-center gap-2 text-[18px] leading-[26px] mt-6">
               <p className="text-[#333333]">Share :</p>
@@ -302,28 +342,11 @@ export default function MainDetails() {
           </div>
         </div>
         <div className="flex gap-6 mt-8 max-sm:flex-col max-sm:items-center">
-          <ShopCard
-            imgSrc="/images/shop/lime.svg"
-            title="Fresh Lime"
-            price="$38.00"
-            discount
-          />
-          <ShopCard
-            imgSrc="/images/shop/muffin.svg"
-            title="Chocolate Muffin"
-            price="$28.00"
-          />
-          <ShopCard
-            imgSrc="/images/shop/burger.svg"
-            title="Burger"
-            price="$21.00"
-          />
-          <ShopCard
-            imgSrc="/images/shop/lime.svg"
-            title="Fresh Lime"
-            price="$38.00"
-            discount
-          />
+          {foodData.map((item: food, index)=>{
+            if(index <= 3){
+              return <ShopCard key={index} imgSrc={item.image_url} title={item.name} price={`$${item.price}.00`} Did={item._id}/>
+            }
+          })}
         </div>
       </section>
     </div>
