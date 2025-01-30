@@ -6,9 +6,10 @@ import { client } from "@/sanity/lib/client";
 
 // Explicitly define the type of params
 interface PageProps {
-  params: {
+
+  params: Promise<{
     id: string; // The dynamic route parameter
-  };
+  }>;
 }
 
 // Generate static paths for dynamic routes
