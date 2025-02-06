@@ -66,7 +66,7 @@ export default function Page() {
             <h4 className="font-Inter400 text-[18px] leading-[26px] text-[#333333] mt-1">
               {chef.position}
             </h4>
-            <div className={`text-center absolute top-[446px] z-10 bg-white pb-1 shadow-lg transform transition-all duration-300 ease-in-out overflow-hidden ${isVisible ? "h-auto max-h-[500px]" : "max-h-0"}`}style={{display: isVisible ? "block" : "none",zIndex: 10,width: "100%"}}>
+            <div className={`text-center absolute top-[446px] z-10 bg-white shadow-lg rounded-b-lg transform transition-all duration-300 ease-in-out overflow-hidden ${isVisible ? "h-auto max-h-[500px]" : "max-h-0"}`}style={{display: isVisible ? "block" : "none",zIndex: 10,width: "100%"}}>
               <h4 className="font-semibold text-lg text-secondary1">
                 <code className="font-Inter700 text-lg text-secondary1">
                   Experience:{" "}

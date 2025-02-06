@@ -11,6 +11,7 @@ import Process from "./components/process/process";
 import Blog from "./components/blogPost/blog";
 import Footer from "./components/footer/footer";
 
+
 export default function Page() {
   return (
     <div className="overflow-hidden relative">
@@ -42,3 +43,4 @@ export default function Page() {
     </div>
   );
 }
+

@@ -3,7 +3,7 @@ import Image from "next/image";
 import ShopCard from "../mainShop/shopCard/shopCard";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
-
+import { useCart } from "@/context/cartContext";
 
 interface food {
   name: string;
@@ -18,8 +18,8 @@ interface food {
 }
 
 export default function MainDetails({ product }: { product: food }) {
-  const [foodData, setFoodData] = useState<food[]>([])
-  useEffect(()=>{
+  const [foodData, setFoodData] = useState<food[]>([]);
+  useEffect(() => {
     const fetchData = async () => {
       const responce = await client.fetch(
         `*[_type == "food"]{
@@ -33,14 +33,27 @@ export default function MainDetails({ product }: { product: food }) {
       description,
       available,
     }`
-        );
-        setFoodData(responce);
-      };
-      fetchData();
-  },[]);
+      );
+      setFoodData(responce);
+    };
+    fetchData();
+  }, []);
+
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      imageUrl: product.image_url,
+    });
+  };
   return (
-    <div className="ml-[300px] my-[120px] flex flex-col max-sm:mx-5 max-sm:my-14 max-lp:mx-0 max-lp:my-[80px]">
-      <section className="flex gap-[55px] max-sm:flex-col max-lp:gap-6">
+    <div className="flex justify-center w-screen">
+    <div className="my-[120px] flex flex-col max-sm:mx-5 max-sm:my-14 max-lp:mx-0 max-lp:my-[80px] w-fit">
+      <section className="flex gap-[55px] max-sm:flex-col max-lp:gap-6 w-fit">
         <div className="flex gap-6 h-fit max-sm:flex-col-reverse max-lp:gap-4">
           <div className="flex flex-col gap-6 h-fit max-sm:flex-row max-sm:overflow-scroll max-sm:w-full">
             <Image
@@ -72,21 +85,27 @@ export default function MainDetails({ product }: { product: food }) {
               className="rounded-md"
             />
           </div>
-          <Image
-            src={product.image_url}
-            alt="-"
-            height={596}
-            width={491}
-            className="rounded-md max-sm:w-full max-lp:h-[596px] h-fit"
-          />
+          <div className="h-full flex items-center">
+            <Image
+              src={product.image_url}
+              alt="-"
+              height={596}
+              width={491}
+              className="rounded-md max-sm:w-full max-lp:h-[596px] h-fit w-auto"
+            />
+          </div>
         </div>
         <div className="flex flex-col">
           <span className="flex justify-between items-center max-sm:w-full ">
-            {product.available ? <div className="bg-primary1 rounded-md px-4 h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
-              In stock
-            </div>:<div className="bg-[#e93636] rounded-md px-4 h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
-              Out of stock
-            </div>}
+            {product.available ? (
+              <div className="bg-primary1 rounded-md px-4 h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
+                In stock
+              </div>
+            ) : (
+              <div className="bg-[#e93636] rounded-md px-4 h-[28px] flex justify-center items-center text-[14px] leading-[22px] text-white">
+                Out of stock
+              </div>
+            )}
             <div className="h-[26px] w-[152px] flex justify-between ml-[380px] max-sm:ml-0">
               <span className="flex gap-1 items-center  text-[18px] leading-[26px] text-[#828282]">
                 <Image
@@ -184,7 +203,10 @@ export default function MainDetails({ product }: { product: food }) {
                 />
               </div>
             </div>
-            <button className="w-[191px] h-[50px] bg-primary1 text-white text-[18px] leading-[26px] flex justify-center items-center gap-2 active:opacity-90">
+            <button
+              onClick={handleAddToCart}
+              className="w-[191px] h-[50px] bg-primary1 text-white text-[18px] leading-[26px] flex justify-center items-center gap-2 active:opacity-90"
+            >
               <Image
                 src="/images/details/Bag.svg"
                 alt="|-|"
@@ -221,10 +243,10 @@ export default function MainDetails({ product }: { product: food }) {
             </div>
             <div className="flex items-center gap-2 text-[18px] leading-[26px] mt-2">
               <p className="text-[#333333]">Tag:</p>
-              {product.tags.map((tag,index)=>{
-                if(index < product.tags.lastIndexOf.length){
-                  return tag+", "; 
-                } else{
+              {product.tags.map((tag, index) => {
+                if (index < product.tags.length - 1) {
+                  return tag + ", ";
+                } else {
                   return tag;
                 }
               })}
@@ -267,7 +289,7 @@ export default function MainDetails({ product }: { product: food }) {
           </span>
         </div>
       </section>
-      <section className="mt-[56px] max-lp:mx-6">
+      <section className="mt-[56px] max-lp:mx-6 w-fit">
         <span className="flex items-center gap-6 max-sm:gap-10">
           <div className="bg-primary1 w-[165px] h-[50px] font-Helvetica text-white flex justify-center items-center">
             Description
@@ -280,17 +302,18 @@ export default function MainDetails({ product }: { product: food }) {
           sagittis. Vestibulum suscipit cursus <br className="max-sm:hidden" />
           bibendum. Integer at justo eget sem auctor auctor eget vitae arcu. Nam
           tempor malesuada porttitor. Nulla quis dignissim ipsum. Aliquam
-          pulvinar iaculis justo, sit amet <br className="max-sm:hidden"/>
+          pulvinar iaculis justo, sit amet <br className="max-sm:hidden" />
           interdum sem hendrerit vitae. Vivamus vel erat tortor. Nulla facilisi.
           In nulla quam, lacinia eu aliquam ac, aliquam in nisl.
         </p>
         <p className="mt-6 text-[#828282]">
           Suspendisse cursus sodales placerat. Morbi eu lacinia ex. Curabitur
           blandit justo urna, id porttitor est dignissim nec. Pellentesque
-          scelerisque hendrerit posuere. Sed at dolor <br className="max-sm:hidden"/>
+          scelerisque hendrerit posuere. Sed at dolor{" "}
+          <br className="max-sm:hidden" />
           quis nisi rutrum accumsan et sagittis massa. Aliquam aliquam accumsan
           lectus quis auctor. Curabitur rutrum massa at volutpat placerat. Duis
-          sagittis vehicula fermentum. <br className="max-sm:hidden"/>
+          sagittis vehicula fermentum. <br className="max-sm:hidden" />
           Integer eu vulputate justo. Aenean pretium odio vel tempor sodales.
           Suspendisse eu fringilla leo, non aliquet sem.
         </p>
@@ -317,7 +340,7 @@ export default function MainDetails({ product }: { product: food }) {
           </ul>
         </span>
       </section>
-      <section className="mt-[120px] mr-[300px]">
+      <section className="mt-[120px]">
         <div className="w-full flex justify-between items-center">
           <h3 className="font-HelveticaBold text-[32px] leading-[40px] text-[#333333] text-3xl">
             Similar Products
@@ -342,13 +365,22 @@ export default function MainDetails({ product }: { product: food }) {
           </div>
         </div>
         <div className="flex gap-6 mt-8 max-sm:flex-col max-sm:items-center">
-          {foodData.map((item: food, index)=>{
-            if(index <= 3){
-              return <ShopCard key={index} imgSrc={item.image_url} title={item.name} price={`$${item.price}.00`} Did={item._id}/>
+          {foodData.map((item: food, index) => {
+            if (index <= 3) {
+              return (
+                <ShopCard
+                  key={index}
+                  imgSrc={item.image_url}
+                  title={item.name}
+                  price={`$${item.price}.00`}
+                  Did={item._id}
+                />
+              );
             }
           })}
         </div>
       </section>
+    </div>
     </div>
   );
 }

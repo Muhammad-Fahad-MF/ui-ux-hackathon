@@ -30,7 +30,7 @@ export default function ShopCard({
   }, [discount, sell]);
   return (
       <div className="h-[330px] w-[312px] flex flex-col justify-between relative group">
-        <Image src={imgSrc} alt="_" height={267} width={312} />
+        <Image src={imgSrc} alt="_" height={267} width={312} className="group-hover:brightness-75"/>
         {isSell && (
           <div className="w-[52px] h-[22px] rounded-[4px] bg-primary1 text-white flex justify-center items-center absolute left-[30px] top-[27px] text-[14px] leading-[22px]">
             Sell

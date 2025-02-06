@@ -1,3 +1,4 @@
+
 import { Metadata } from "next";
 import HeaderNav from "../../components2/headerNav/headerNav";
 import Footer from "../../components/footer/footer";

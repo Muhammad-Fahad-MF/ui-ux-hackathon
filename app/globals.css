@@ -27,3 +27,9 @@
   font-family: Inter700;
   src: url("/fonts/Inter700.ttf") format("truetype");
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}

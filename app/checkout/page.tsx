@@ -1,3 +1,5 @@
+"use client";
+
 import HeaderNav from "../components2/headerNav/headerNav";
 import Footer from "../components/footer/footer";
 import MainCheckout from "../components2/checkout/checkout";

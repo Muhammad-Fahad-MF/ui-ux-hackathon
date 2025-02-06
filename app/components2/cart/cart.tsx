@@ -1,9 +1,47 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import CartCard from "./cartCard/cartCard";
+import { useCart } from "@/context/cartContext";
+
 export default function AddCart() {
+
+  const { cart, removeFromCart, clearCart } = useCart();
+
   return (
     <div className="mx-[300px] my-[119px] flex flex-col gap-8 max-sm:mx-5 max-sm:my-14 max-lp:mx-5">
+       <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
+      {cart.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <>
+          <ul>
+            {cart.map((item) => (
+              <li key={item.id} className="flex items-center gap-4 mb-4">
+                <Image src={item.imageUrl} alt={item.name} width={80} height={80} />
+                <div className="flex-1">
+                  <h2 className="text-lg font-semibold">{item.name}</h2>
+                  <p>${item.price} x {item.quantity}</p>
+                </div>
+                <button
+                  className="text-red-500"
+                  onClick={() => removeFromCart(item.id)}
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button
+            className="bg-red-500 text-white px-4 py-2 mt-4"
+            onClick={clearCart}
+          >
+            Clear Cart
+          </button>
+        </>
+      )}
+    </div>
       <section className="max-sm:flex max-sm:flex-col max-sm:items-center">
         <span className="flex ml-[1px] max-sm:mb-6">
           <h3 className="font-Inter700 text-[18px] leading-[26px] max-sm:text-3xl">Product</h3>

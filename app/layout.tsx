@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Providers from "./providers"; // Import the Providers component
 import Head from "next/head";
 
 const geistSans = localFont({
@@ -14,9 +14,9 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Foodtuck",
-  description: "Made by 00073399",
+  description: "Made by 0073399",
 };
 
 export default function RootLayout({
@@ -26,13 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <Head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black/95`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
