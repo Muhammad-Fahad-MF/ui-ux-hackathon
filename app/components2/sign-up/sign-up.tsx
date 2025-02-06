@@ -36,11 +36,12 @@ function SignUp(props: formProps) {
         body: JSON.stringify(formValues),
       });
       const result = await response.json();
-      console.log(result, "result");
-      if (result.message) {
+      if (result.message == "Success") {
         setBtnText("Success");
         const redirectPath = "/login";
         router.push(redirectPath);
+      }else {
+        setBtnText(result.message)
       }
     } catch (error) {
       setBtnText("Something went wrong");
@@ -146,7 +147,7 @@ function SignUp(props: formProps) {
               alt="I"
               height={20}
               width={20}
-              className=""
+              className="h-auto w-auto"
             />
             <p className="font-Helvetica text-center">Sign up with Apple</p>
           </button>

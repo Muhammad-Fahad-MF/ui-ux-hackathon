@@ -3,21 +3,26 @@ import "next-auth";
 declare module "next-auth" {
   interface User {
     id: string;
-    token?: string;
+    email: string;
+    name?: string;
+    accessToken: string; // 🔹 Ensuring accessToken exists
   }
+
   interface Session {
     user: {
-      id?: string;
-      email?: string;
+      id: string;
+      email: string;
       name?: string;
-      accessToken?: string;
+      accessToken: string;
     };
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    id?: string;
-    accessToken?: string;
+    id: string;
+    email: string;
+    accessToken: string;
+    accessTokenExpires: number; // 🔹 Added to track JWT expiry
   }
 }

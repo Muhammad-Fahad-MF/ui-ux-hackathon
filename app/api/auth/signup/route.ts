@@ -12,6 +12,18 @@ export const POST = async (req: NextRequest) => {
       { status: 400 }
     );
   }
+  const sEmail = data.email;
+
+  const mailCheck =
+    await client.fetch(`*[ _type == "user" && email == "${sEmail}" ][0]{
+          email,
+      }`);
+  if (mailCheck.email == sEmail ) {
+    return NextResponse.json(
+      { message: "Email already exists!" },
+      { status: 500 }
+    );
+  }
 
   const roundSalt = await bcrypt.genSalt(11);
   const hashPassword = await bcrypt.hash(data?.password, roundSalt);
@@ -25,7 +37,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ message: "Succes", newUser }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { message: "Failed to create user",error },
+      { message: "Failed to create user", error },
       { status: 500 }
     );
   }

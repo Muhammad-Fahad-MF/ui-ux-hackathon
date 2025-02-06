@@ -102,10 +102,10 @@ export default function MainShop() {
   };
 
   return (
-    <div className="flex my-[120px] mx-[300px] gap-6 max-sm:mx-5 max-sm:my-14 max-sm:flex-col max-lp:mx-2 max-lp:my-14 max-lp:gap-2">
+    <div className="flex my-[120px] mx-[300px] gap-6 max-sm:mx-5 max-sm:my-14 max-sm:flex-col max-lp:mx-0 max-lg:flex-col max-lp:my-14 max-lp:gap-2">
       <section className="flex flex-col">
-        <span className="flex gap-[33px] max-sm:flex-col">
-          <div className="flex items-center gap-[15px] max-sm:w-full max-sm:justify-between">
+        <span className="flex gap-[33px] max-sm:flex-col max-sm:items-center">
+          <div className="flex items-center gap-[15px] max-sm:w-full max-sm:justify-between max-sm:flex-col max-sm:items-start ">
             <h6 className="text-[20px] leading-[28px]">Sort By :</h6>
             <Select
               onValueChange={(value: SortByOption) => {
@@ -126,7 +126,7 @@ export default function MainShop() {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex items-center gap-[15px] max-sm:w-full max-sm:justify-between">
+          <div className="flex items-center gap-[15px] max-sm:w-full max-sm:justify-between max-sm:flex-col max-sm:items-start">
             <h6 className="text-[20px] leading-[28px]">Show :</h6>
             <Select onValueChange={(value: ShowOption) => setShow(value)}>
               <SelectTrigger className="w-[336px] h-[46px] text-[#bdbdbd] text-[18px] leading-[26px]">
@@ -141,8 +141,25 @@ export default function MainShop() {
               </SelectContent>
             </Select>
           </div>
+          <div className="h-[46px] w-[248px] bg-primary1/10 pl-5 flex justify-between items-center sm:hidden">
+            <input
+              className="text-[#828282] w-[150px] bg-transparent focus:outline-none"
+              placeholder="Search Product"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <button className="bg-primary1 h-[46px] w-[46px] flex justify-center items-center">
+              <Image
+                src="/images/shop/Magnify.svg"
+                alt="_"
+                height={20}
+                width={20}
+              />
+            </button>
+          </div>
         </span>
-        <span className="mt-6 grid grid-cols-3 grid-flow-row gap-6 max-sm:items-center">
+        <span className="mt-6 grid grid-cols-3 grid-flow-row gap-6 max-sm:grid-cols-1 max-sm:items-center">
           {filteredData.map((food: food, index) => (
             <ShopCard
               key={index}
@@ -163,6 +180,7 @@ export default function MainShop() {
               alt="<"
               height={17}
               width={14}
+              className="h-[17px] w-auto "
             />
           </div>
           <div className="h-[50px] w-[50px] box-border border-[2px] border-[#f2f2f2] flex items-center justify-center text-primary1">
@@ -177,16 +195,16 @@ export default function MainShop() {
           <div className="h-[50px] w-[50px] box-border border-[2px] border-[#f2f2f2] flex items-center justify-center">
             <Image
               src="/images/shop/arrows.svg"
-              alt="<"
+              alt=">"
               height={17}
               width={14}
-              className="rotate-180"
+              className="rotate-180 h-[17px] w-auto "
             />
           </div>
         </span>
       </section>
       <section className="h-[1489px] w-[312px] max-lp:w-[300px] max-lp:px-5 rounded-md border-[1px] border-[#f2f2f2] box-border px-[30px] py-6 flex flex-col gap-6 max-sm:self-center max-sm:mt-8">
-        <div className="h-[46px] w-[248px] bg-primary1/10 pl-5 flex justify-between items-center">
+        <div className="h-[46px] w-[248px] bg-primary1/10 pl-5 flex justify-between items-center max-sm:hidden">
           <input
             className="text-[#828282] w-[150px] bg-transparent focus:outline-none"
             placeholder="Search Product"

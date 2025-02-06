@@ -154,7 +154,7 @@ export default function SignIn({
           className="box-border border-[1px] border-[#e0e0e0] text-[#4f4f4f] grid grid-cols-[20px_1fr] items-center h-[44px] w-full px-4 mt-4 opacity-50 cursor-not-allowed"
           disabled
         >
-          <Image src="/images/sign/Apple.svg" alt="I" height={20} width={20} />
+          <Image src="/images/sign/Apple.svg" alt="I" height={20} width={20} className="h-auto w-auto" />
           <p className="font-Helvetica text-center">
             Apple Login (Coming Soon)
           </p>

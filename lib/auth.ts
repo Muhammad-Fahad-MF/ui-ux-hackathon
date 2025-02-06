@@ -29,34 +29,66 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid email or password");
         }
 
-        const token = jwt.sign({ email: user.email, id: user._id }, SECRET_KEY, { expiresIn: "7d" });
+        const accessToken = jwt.sign(
+          { email: user.email, id: user._id },
+          SECRET_KEY,
+          { expiresIn: "7d" } // 🔹 Increase validity if needed
+        );
 
         return { 
           id: user._id, 
           email: user.email, 
           name: user.name, 
-          token  // Now valid due to extended User type
+          accessToken
         };
       },
     }),
   ],
   session: {
     strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60, // 🔹 7 days (same as JWT expiry)
   },
   callbacks: {
     async jwt({ token, user }) {
+      const now = Math.floor(Date.now() / 1000); // Get current timestamp
+
+      // If user just signed in, store fresh access token
       if (user) {
-        token.id = user.id;
-        token.email = user.email;
-        token.accessToken = user.token; // Valid due to JWT type extension
+        return {
+          ...token,
+          id: user.id,
+          email: user.email,
+          accessToken: user.accessToken,
+          accessTokenExpires: now + 7 * 24 * 60 * 60, // 🔹 Store JWT expiry time
+        };
       }
+
+      // 🔹 If token expired, refresh it
+      if (token.accessTokenExpires && now > token.accessTokenExpires) {
+        try {
+          const newAccessToken = jwt.sign(
+            { email: token.email, id: token.id },
+            SECRET_KEY,
+            { expiresIn: "7d" }
+          );
+          return {
+            ...token,
+            accessToken: newAccessToken,
+            accessTokenExpires: now + 7 * 24 * 60 * 60,
+          };
+        } catch (error) {
+          console.error("JWT Refresh Failed:", error);
+          return { ...token, error: "TokenRefreshError" };
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id;
-        session.user.email = token.email as string;
-        session.user.accessToken = token.accessToken; // Valid due to Session type extension
+        session.user.email = token.email;
+        session.user.accessToken = token.accessToken;
       }
       return session;
     },

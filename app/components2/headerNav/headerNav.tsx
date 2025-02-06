@@ -3,14 +3,31 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/context/cartContext";
 import { useSession, signOut } from "next-auth/react";
+import { client } from "@/sanity/lib/client";
+import { useEffect, useState } from "react";
 
 interface navBarProps {
   mainHead: string;
   trackHead: string;
 }
+
 export default function HeaderNav({ mainHead, trackHead }: navBarProps) {
+  const [userName, setUserName] = useState<string>()
+  const [hidden, setHidden] = useState<boolean>(false)
   const { data: session } = useSession();
   const { cart } = useCart();
+  useEffect(()=>{
+    const getUser = async () => {
+      const user = await client.fetch(
+        `*[ _type == "user" && email == "${session?.user.email}"][0]{
+            username,
+        }`
+      );
+      setUserName(user?.username)
+    }
+    getUser();
+  },[session]);
+
   return (
     <div className="bg-[url('/images/headerNav/bgHeader.svg')] bg-cover aspect-[192/42] text-white font-Inter400 flex flex-col items-center gap-[108px] -mr-[1px] max-sm:gap-14 max-sm:pb-10 max-sm:bg-bottom max-lp:pb-14 max-lp:gap-20">
       <section
@@ -55,18 +72,29 @@ export default function HeaderNav({ mainHead, trackHead }: navBarProps) {
                 alt="s"
                 height={20}
                 width={20}
+                className="h-auto w-5"
               />
             </Link>
           </li>
-          <li>
-            <Link href="#">
+          <li className="relative flex items-center">
+            <button>
               <Image
                 src="/images/header-banner/User.svg"
                 alt="o_o"
                 height={24}
                 width={24}
+                onClick={()=>setHidden(!hidden)}
               />
-            </Link>
+            </button>
+            <div className="absolute top-6 left-0 max-lp:right-0 max-lp:left-auto">
+              {hidden && (
+                <div className="bg-zinc-700 p-2 flex flex-col  rounded-xl ">
+                  <div className="border-b-[1px] border-[#e0e0e0] py-3 px-2 text-center">Welcome! {userName?.split(" ").slice(0,1).join(" ")}</div>
+                  <div className="border-b-[1px] border-[#e0e0e0] py-3 px-2 text-center">{session?.user.email}</div>
+                  <button onClick={() => signOut()} className="bg-red-700  text-[#ffffff] py-2 mt-2 px-2 rounded-lg">Logout</button>
+                </div>
+              )}
+            </div>
           </li>
           <li>
             <Link href="/shoppingCart" className="relative">
@@ -80,14 +108,6 @@ export default function HeaderNav({ mainHead, trackHead }: navBarProps) {
                 {cart.length}
               </span>
             </Link>
-            {session ? (
-              <div>
-                <span>Welcome, {session.user?.name}</span>
-                <button onClick={() => signOut()}>Logout</button>
-              </div>
-            ) : (
-              <Link href="/login">Login</Link>
-            )}
           </li>
         </ul>
       </section>
@@ -95,13 +115,14 @@ export default function HeaderNav({ mainHead, trackHead }: navBarProps) {
         <h1 className="font-HelveticaBold text-[48px] leading-[56px]">
           {mainHead}
         </h1>
-        <div className="flex gap-1 ">
+        <div className="flex gap-1 items-center ">
           <p className="text-[20px] leading-[28px]">Home</p>
           <Image
             src="/images/headerNav/CaretRight.svg"
-            alt=" "
+            alt=">"
             width={16}
             height={16}
+            className="h-4 w-auto"
           />
           <p className="text-[20px] leading-[28px] text-primary1">
             {trackHead}

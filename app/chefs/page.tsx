@@ -47,7 +47,7 @@ export default function Page() {
   return (
     <div className="overflow-hidden">
       <HeaderNav trackHead="Chef" mainHead="Our Chef" />
-      <div className="bg-white py-[120px] px-[300px] grid grid-cols-4 grid-flow-row gap-6 max-lp:px-0 max-lp:py-[80px]">
+      <div className="bg-white py-[120px] px-[300px] grid grid-cols-4 grid-flow-row gap-6 max-lp:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 max-lp:px-0 max-lp:py-[80px]">
         {chef.map((chef: chefData, index: number) => {
           const { text, color } = getAvailabilityStyles(chef.available);
           const isVisible = visibleIndex === index;

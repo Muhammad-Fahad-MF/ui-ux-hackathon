@@ -11,7 +11,7 @@ export default function Chefs() {
             <ChefCard img="M. William" name="M. William" role="Advertising Chef"/>
             <ChefCard img="W.Readfroad" name="W.Readfroad" role="Chef"/>   
         </section>
-        <Link href="/chefs"><button className="border-[1px] border-primary1 rounded-[25px] w-[155px] h-[50px] hover:bg-primary1">See More</button></Link>
+        <Link href="/chefs" className="border-[1px] border-primary1 rounded-[25px] w-[155px] h-[50px] hover:bg-primary1 flex justify-center items-center">See More</Link>
     </div>
   )
 }

@@ -72,14 +72,14 @@ export default function Footer() {
                 </div>
             </li>
             <li className="flex gap-4">
-                <Image src="/images/footer/meat.svg" alt="||||" width={55} height={47} className="ml-[3px] mb-[1px] mr-[1px]"/>
+                <Image src="/images/footer/meat.svg" alt="||||" width={55} height={47} className="ml-[3px] mb-[1px] mr-[1px] w-auto h-auto"/>
                 <div>
                     <p className="opacity-[0.49]">20 Feb 2022</p>
                     <p>Keep Your Business </p>
                 </div>
             </li>
             <li className="flex gap-4">
-                <Image src="/images/footer/roll.svg" alt="||||" width={55} height={47} className="ml-[3px] mb-[1px] mr-[1px]"/>
+                <Image src="/images/footer/roll.svg" alt="||||" width={55} height={47} className="ml-[3px] mb-[1px] mr-[1px] w-auto h-auto"/>
                 <div>
                     <p className="opacity-[0.49]">20 Feb 2022</p>
                     <p>Keep Your Business </p>

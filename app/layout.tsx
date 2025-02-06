@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "./providers"; // Import the Providers component
 import Head from "next/head";
+import SessionRefresher from "@/components/SessionRefresher";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,7 +33,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black/95`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <SessionRefresher />
+          {children}
+        </Providers>
       </body>
     </html>
   );
