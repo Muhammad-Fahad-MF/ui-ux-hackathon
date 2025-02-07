@@ -38,6 +38,7 @@ export default function SignIn({
       if (result?.ok === true) {
         setBtnText("Success");
         router.push("/");
+        window.location.href = "/";
       }
     } catch (error) {
       setBtnText("Something went wrong");
