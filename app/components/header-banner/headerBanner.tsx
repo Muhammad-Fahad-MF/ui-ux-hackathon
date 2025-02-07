@@ -5,7 +5,7 @@ import { IoLogoTwitter } from "react-icons/io5";
 import { TfiPinterest } from "react-icons/tfi";
 export default function HeaderBanner() {
   return (
-    <div  className="bg-[url('/images/header-banner/bannerBg.svg')] w-full aspect-[192/95] bg-no-repeat bg-cover bg-center max-sm:aspect-auto max-sm:h-screen max-lp:aspect-auto">
+    <div  className="bg-[url('/images/header-banner/bannerBg.png')] w-full aspect-[192/95] bg-no-repeat bg-cover bg-center max-sm:aspect-auto max-sm:h-screen max-lp:aspect-auto">
         <div className="bg-secondary1/95 h-full">
            <Navbar />
            <div className="ml-[242px] mt-[59px] flex max-sm:ml-4 max-sm:mt-[17vh] max-sm:pb-5 max-lp:ml-8 max-lp:mt-10 max-lp:pb-5">
